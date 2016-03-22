@@ -3,8 +3,10 @@ import {Task} from './task.model';
 
 @Pipe ({
   name: "done",
-  pure: true
+  pure: false
 })
+
+// By setting pure to true, this becomes a stateless pipe, which basically means that it transforms input to output and then the pipe doesn't do anything or store anything until we tell it to. But declaring a pipe to be stateful tells Angular to check and see if the output of the pipe has changed after each change detection cycle, this causes it to update as soon as we have changed something about a task.
 
 export class DonePipe implements PipeTransform {
   transform(input: Task[], args) {
